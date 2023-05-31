@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Button(props: buttonProps) {
   return (
-    <button className="btn btn-primary" onClick={props.onclick}>
+    <button type={props.type} className="btn btn-primary" onClick={props.onclick}>
       {props.children}
     </button>
   );
@@ -10,5 +10,10 @@ export default function Button(props: buttonProps) {
 
 interface buttonProps {
   children: React.ReactNode;
-  onclick(): void;
+  onclick?(): void;
+  type: "button" | "submit"
+}
+
+Button.defaultProps = {
+  type: "button"
 }
