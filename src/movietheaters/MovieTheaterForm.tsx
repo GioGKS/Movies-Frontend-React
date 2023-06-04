@@ -4,9 +4,18 @@ import TextField from "../forms/TextField";
 import Button from "../utils/Button";
 import { movieTheaterCreationDTO } from "./movieTheater.model";
 import * as Yup from "yup";
-import Map from "../utils/Map";
+import MapField from "../forms/MapField";
+import coordinateDTO from "../utils/coordinate.model";
 
 export default function MovieThaterForm(props: movieTheaterForm) {
+
+  function transformCoordinates(): coordinateDTO[] | undefined{
+    if(props.model.latitude && props.model.longitude){
+      const response: coordinateDTO = {lat: props.model.latitude, lng: props.model.longitude}
+      return [response];
+    }
+  }
+
   return (
     <Formik
       initialValues={props.model}
@@ -22,7 +31,7 @@ export default function MovieThaterForm(props: movieTheaterForm) {
           <TextField displayName="Name" field="name" />
 
           <div style={{ marginBottom: "1rem" }}>
-            <Map />
+            <MapField latFielt="latitude" lngField="longitude" coordinates={transformCoordinates()}/>
           </div>
 
           <Button disabled={formikProps.isSubmitting} type="submit">
