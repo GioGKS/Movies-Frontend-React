@@ -1,4 +1,3 @@
-import { boolean } from "yup";
 import { genreDTO } from "../genres/genres.mode";
 import MovieForm from "./MovieForm";
 
