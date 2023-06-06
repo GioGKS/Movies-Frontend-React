@@ -1,9 +1,15 @@
 import { genreDTO } from "../genres/genres.mode";
+import { movieTheaterDTO } from "../movietheaters/movieTheater.model";
 import MovieForm from "./MovieForm";
 
 export default function EditMovie() {
-  const nonSelectedgenres: genreDTO[] = [{ id: 2, name: "Drama" }];
-  const selectedgenres: genreDTO[] = [{ id: 1, name: "Comedy" }];
+  const nonSelectedGenres: genreDTO[] = [{ id: 2, name: "Drama" }];
+  const selectedGenres: genreDTO[] = [{ id: 1, name: "Comedy" }];
+
+  const selectedMovieTheaters: movieTheaterDTO[] = [{ id: 1, name: "Sambil" }];
+  const nonSelectedMovieTheaters: movieTheaterDTO[] = [
+    { id: 2, name: "Agora" },
+  ];
 
   return (
     <>
@@ -16,8 +22,11 @@ export default function EditMovie() {
           releaseDate: new Date("2019-01-01T00:00:00"),
         }}
         onSubmit={(values) => console.log(values)}
-        selectedGenres={selectedgenres}
-        nonSelectedGenres={nonSelectedgenres}
+        selectedGenres={selectedGenres}
+        nonSelectedGenres={nonSelectedGenres}
+
+        nonSelectedMovieTheaters={nonSelectedMovieTheaters}
+        selectedMovieTheaters={selectedMovieTheaters}
       />
     </>
   );

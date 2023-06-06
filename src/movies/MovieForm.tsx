@@ -12,14 +12,14 @@ import MultipleSelector, {
 } from "../forms/MultipleSelector";
 import { useState } from "react";
 import { genreDTO } from "../genres/genres.mode";
+import { movieTheaterDTO } from "../movietheaters/movieTheater.model";
 
 export default function MovieForm(props: movieFormProps) {
-  const [selectedGenres, setSelectedgenres] = useState(
-    mapToModel(props.selectedGenres)
-  );
-  const [nonSelectedGenres, setNonSelectedgenres] = useState(
-    mapToModel(props.nonSelectedGenres)
-  );
+  const [selectedGenres, setSelectedGenres] = useState(mapToModel(props.selectedGenres));
+  const [nonSelectedGenres, setNonSelectedGenres] = useState(mapToModel(props.nonSelectedGenres));
+
+  const [selectedMovieTheaters, setSelectedMovieTheaters] = useState(mapToModel(props.selectedMovieTheaters));
+  const [nonSelectedMovieTheaters, setNonSelectedMovieTheaters] = useState(mapToModel(props.nonSelectedMovieTheaters));
 
   function mapToModel(
     items: { id: number; name: string }[]
@@ -32,7 +32,11 @@ export default function MovieForm(props: movieFormProps) {
   return (
     <Formik
       initialValues={props.model}
-      onSubmit={props.onSubmit}
+      onSubmit={(values, actions) => {
+        values.genresIds = selectedGenres.map((item) => item.key);
+        values.movieTheatersIds = selectedMovieTheaters.map((item) => item.key);
+        props.onSubmit(values, actions);
+      }}
       validationSchema={Yup.object({
         title: Yup.string()
           .required("This field is required")
@@ -56,8 +60,18 @@ export default function MovieForm(props: movieFormProps) {
             nonSelected={nonSelectedGenres}
             selected={selectedGenres}
             onChange={(selected, nonSelected) => {
-              setSelectedgenres(selected);
-              setNonSelectedgenres(nonSelected);
+              setSelectedGenres(selected);
+              setNonSelectedGenres(nonSelected);
+            }}
+          />
+
+        <MultipleSelector
+            displayName="Movie Theaters"
+            nonSelected={nonSelectedMovieTheaters}
+            selected={selectedMovieTheaters}
+            onChange={(selected, nonSelected) => {
+              setSelectedMovieTheaters(selected);
+              setNonSelectedMovieTheaters(nonSelected);
             }}
           />
 
@@ -81,4 +95,6 @@ interface movieFormProps {
   ): void;
   selectedGenres: genreDTO[];
   nonSelectedGenres: genreDTO[];
+  selectedMovieTheaters: movieTheaterDTO[];
+  nonSelectedMovieTheaters: movieTheaterDTO[];
 }
