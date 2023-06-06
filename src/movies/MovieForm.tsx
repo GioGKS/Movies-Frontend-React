@@ -13,13 +13,26 @@ import MultipleSelector, {
 import { useState } from "react";
 import { genreDTO } from "../genres/genres.mode";
 import { movieTheaterDTO } from "../movietheaters/movieTheater.model";
+import TypeAheadActors from "../forms/TypeAheadActors";
+import { actorMovieDTO } from "../actors/actors.mode";
+import ActorForm from "../actors/ActorForm";
 
 export default function MovieForm(props: movieFormProps) {
-  const [selectedGenres, setSelectedGenres] = useState(mapToModel(props.selectedGenres));
-  const [nonSelectedGenres, setNonSelectedGenres] = useState(mapToModel(props.nonSelectedGenres));
+  const [selectedGenres, setSelectedGenres] = useState(
+    mapToModel(props.selectedGenres)
+  );
+  const [nonSelectedGenres, setNonSelectedGenres] = useState(
+    mapToModel(props.nonSelectedGenres)
+  );
 
-  const [selectedMovieTheaters, setSelectedMovieTheaters] = useState(mapToModel(props.selectedMovieTheaters));
-  const [nonSelectedMovieTheaters, setNonSelectedMovieTheaters] = useState(mapToModel(props.nonSelectedMovieTheaters));
+  const [selectedMovieTheaters, setSelectedMovieTheaters] = useState(
+    mapToModel(props.selectedMovieTheaters)
+  );
+  const [nonSelectedMovieTheaters, setNonSelectedMovieTheaters] = useState(
+    mapToModel(props.nonSelectedMovieTheaters)
+  );
+
+  const [selectedActors, setSelectedActors] = useState(props.selectedActors);
 
   function mapToModel(
     items: { id: number; name: string }[]
@@ -35,6 +48,7 @@ export default function MovieForm(props: movieFormProps) {
       onSubmit={(values, actions) => {
         values.genresIds = selectedGenres.map((item) => item.key);
         values.movieTheatersIds = selectedMovieTheaters.map((item) => item.key);
+        values.actors = selectedActors;
         props.onSubmit(values, actions);
       }}
       validationSchema={Yup.object({
@@ -65,7 +79,7 @@ export default function MovieForm(props: movieFormProps) {
             }}
           />
 
-        <MultipleSelector
+          <MultipleSelector
             displayName="Movie Theaters"
             nonSelected={nonSelectedMovieTheaters}
             selected={selectedMovieTheaters}
@@ -73,6 +87,37 @@ export default function MovieForm(props: movieFormProps) {
               setSelectedMovieTheaters(selected);
               setNonSelectedMovieTheaters(nonSelected);
             }}
+          />
+
+          <TypeAheadActors
+            displayName="Actors"
+            actors={selectedActors}
+            onAdd={(actors) => {
+              setSelectedActors(actors);
+            }}
+            onRemove={(actor) => {
+              const actors = selectedActors.filter((x) => x !== actor);
+              setSelectedActors(actors);
+            }}
+            listUI={(actor: actorMovieDTO) => (
+              <>
+                {actor.name} /{" "}
+                <input
+                  placeholder="Character"
+                  type="text"
+                  value={actor.character}
+                  onChange={(e) => {
+                    const index = selectedActors.findIndex(
+                      (x) => x.id === actor.id
+                    );
+
+                    const actors = [...selectedActors];
+                    actors[index].character = e.currentTarget.value;
+                    setSelectedActors(actors);
+                  }}
+                ></input>
+              </>
+            )}
           />
 
           <Button disabled={formikProps.isSubmitting} type="submit">
@@ -97,4 +142,5 @@ interface movieFormProps {
   nonSelectedGenres: genreDTO[];
   selectedMovieTheaters: movieTheaterDTO[];
   nonSelectedMovieTheaters: movieTheaterDTO[];
+  selectedActors: actorMovieDTO[];
 }
