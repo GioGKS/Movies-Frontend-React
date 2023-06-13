@@ -7,11 +7,12 @@ import { genreCreationDTO } from "./genres.mode";
 
 export default function GenreForm(props: genreFormProps) {
   return (
-    <Formik initialValues={props.model}
+    <Formik
+      initialValues={props.model}
       onSubmit={props.onSubmit}
       validationSchema={Yup.object({
         name: Yup.string()
-          .required("Thies field is required")
+          .required("This field is required")
           .firstLetterUppercase(),
       })}
     >

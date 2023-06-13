@@ -1,54 +1,58 @@
-import { useState } from "react";
-import { Typeahead } from "react-bootstrap-typeahead";
-import { ReactElement } from "react-markdown/lib/react-markdown";
+import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useState } from "react";
 import { actorMovieDTO } from "../actors/actors.mode";
 
 export default function TypeAheadActors(props: typeAheadActorsProps) {
+  var Typeahead = require("react-bootstrap-typeahead").Typeahead;
   const actors: actorMovieDTO[] = [
     {
       id: 1,
-      name: "Tom Holland",
+      name: "Felipe",
       character: "",
       picture:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Tom_Holland_by_Gage_Skidmore.jpg/220px-Tom_Holland_by_Gage_Skidmore.jpg",
     },
     {
-      id: 1,
-      name: "Keanu Reeves",
+      id: 2,
+      name: "Fernando",
       character: "",
       picture:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Reunião_com_o_ator_norte-americano_Keanu_Reeves_%2846806576944%29_%28cropped%29.jpg/220px-Reunião_com_o_ator_norte-americano_Keanu_Reeves_%2846806576944%29_%28cropped%29.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Dwayne_Johnson_2%2C_2013.jpg/220px-Dwayne_Johnson_2%2C_2013.jpg",
     },
     {
-      id: 1,
-      name: "Christian Bale",
+      id: 3,
+      name: "Jessica",
       character: "",
       picture:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Christian_Bale-7837.jpg/220px-Christian_Bale-7837.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Meryl_Streep_December_2018.jpg/220px-Meryl_Streep_December_2018.jpg",
     },
   ];
 
   const selected: actorMovieDTO[] = [];
 
-  const [draggedElement, setDraggedElement] = useState<actorMovieDTO | undefined>(undefined)
+  const [draggedElement, setDraggedElement] = useState<
+    actorMovieDTO | undefined
+  >(undefined);
 
-  function handleDragStart(actor:actorMovieDTO){
+  function handleDragStart(actor: actorMovieDTO) {
     setDraggedElement(actor);
   }
 
-  function handleDragOver(actor: actorMovieDTO){
-      if (!draggedElement){
-          return;
-      }
-      if(actor.id !== draggedElement.id){
-          const draggedElementIndex = props.actors.findIndex(x => x.id === draggedElement.id);
-          const actorIndex = props.actors.findIndex(x => x.id === actor.id);
+  function handleDragOver(actor: actorMovieDTO) {
+    if (!draggedElement) {
+      return;
+    }
 
-          const Actors = [...props.actors];
-          actors[actorIndex] = draggedElement;
-          actors[draggedElementIndex] = actor;
-          props.onAdd(actors);
-      }
+    if (actor.id !== draggedElement.id) {
+      const draggedElementIndex = props.actors.findIndex(
+        (x) => x.id === draggedElement.id
+      );
+      const actorIndex = props.actors.findIndex((x) => x.id === actor.id);
+
+      const actors = [...props.actors];
+      actors[actorIndex] = draggedElement;
+      actors[draggedElementIndex] = actor;
+      props.onAdd(actors);
+    }
   }
 
   return (
@@ -56,20 +60,21 @@ export default function TypeAheadActors(props: typeAheadActorsProps) {
       <label>{props.displayName}</label>
       <Typeahead
         id="typeahead"
-        onChange={(actors) => {
+        onChange={(actors: actorMovieDTO[]) => {
           if (props.actors.findIndex((x) => x.id === actors[0].id) === -1) {
             props.onAdd([...props.actors, actors[0]]);
           }
+
           console.log(actors);
         }}
         options={actors}
-        labelKey={(actor) => actor.name}
+        labelKey="name"
         filterBy={["name"]}
         placeholder="Write the name of the actor..."
         minLength={1}
         flip={true}
         selected={selected}
-        renderMenuItemChildren={(actor) => (
+        renderMenuItemChildren={(actor: { picture: string | undefined; name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }) => (
           <>
             <img
               alt="actor"
@@ -91,7 +96,7 @@ export default function TypeAheadActors(props: typeAheadActorsProps) {
             key={actor.id}
             draggable={true}
             onDragStart={() => handleDragStart(actor)}
-            onDragOver={() => handleDragStart(actor)}
+            onDragOver={() => handleDragOver(actor)}
             className="list-group-item list-group-item-action"
           >
             {props.listUI(actor)}

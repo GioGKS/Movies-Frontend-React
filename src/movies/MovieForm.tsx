@@ -5,17 +5,16 @@ import Button from "../utils/Button";
 import { Link } from "react-router-dom";
 import TextField from "../forms/TextField";
 import ImageField from "../forms/ImageField";
-import ChekboxField from "../forms/CheckboxField";
 import DateField from "../forms/DateField";
+import CheckboxField from "../forms/CheckboxField";
 import MultipleSelector, {
   multipleSelectorModel,
 } from "../forms/MultipleSelector";
 import { useState } from "react";
 import { genreDTO } from "../genres/genres.mode";
 import { movieTheaterDTO } from "../movietheaters/movieTheater.model";
-import TypeAheadActors from "../forms/TypeAheadActors";
+import TypeAheadActor from "../forms/TypeAheadActors";
 import { actorMovieDTO } from "../actors/actors.mode";
-import ActorForm from "../actors/ActorForm";
 
 export default function MovieForm(props: movieFormProps) {
   const [selectedGenres, setSelectedGenres] = useState(
@@ -60,7 +59,7 @@ export default function MovieForm(props: movieFormProps) {
       {(formikProps) => (
         <Form>
           <TextField displayName="Title" field="title" />
-          <ChekboxField displayName="In Theaters" field="inTheaters" />
+          <CheckboxField displayName="In Theaters" field="inTheaters" />
           <TextField displayName="Trailer" field="trailer" />
           <DateField displayName="Release Date" field="releaseDate" />
           <ImageField
@@ -89,7 +88,7 @@ export default function MovieForm(props: movieFormProps) {
             }}
           />
 
-          <TypeAheadActors
+          <TypeAheadActor
             displayName="Actors"
             actors={selectedActors}
             onAdd={(actors) => {
@@ -115,7 +114,7 @@ export default function MovieForm(props: movieFormProps) {
                     actors[index].character = e.currentTarget.value;
                     setSelectedActors(actors);
                   }}
-                ></input>
+                />
               </>
             )}
           />
