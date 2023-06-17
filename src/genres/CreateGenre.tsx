@@ -19,7 +19,6 @@ export default function CreateGenre() {
             if (error && error.response){
                 setErrors(error.response.data)
             }
-            
         }
     }
 
