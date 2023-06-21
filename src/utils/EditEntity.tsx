@@ -1,8 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { ReactElement, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import GenreForm from "../genres/GenreForm";
-import { genreCreationDTO } from "../genres/genres.mode";
 import DisplayErrors from "./DisplayErrors";
 import Loading from "./Loading";
 
@@ -18,7 +16,7 @@ export default function EditEntity<TCreation, TRead>(
     axios.get(`${props.url}/${id}`).then((response: AxiosResponse<TRead>) => {
       setEntity(props.transform(response.data));
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   async function edit(entityToEdit: TCreation) {
