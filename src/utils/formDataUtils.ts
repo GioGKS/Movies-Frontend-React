@@ -1,23 +1,25 @@
-import { actorCreationDTO } from "../actors/actors.mode";
+import {actorCreationDTO} from '../actors/actors.mode'
 
-export default function convertActorToFormData(actor: actorCreationDTO): FormData{
+export function convertActorToFormData(actor: actorCreationDTO): FormData{
     const formData = new FormData();
 
     formData.append('name', actor.name);
 
-    if(actor.biography){
-        formData.append('biography', actor.biography)
+    if (actor.biography){
+        formData.append('biography', actor.biography);
     }
 
-    if(actor.dateOfBirth){  
+    if (actor.dateOfBirth){
         formData.append('dateOfBirth', formatDate(actor.dateOfBirth))
     }
-    if(actor.picture){  
+
+    if (actor.picture){
         formData.append('picture', actor.picture);
     }
 
     return formData;
 }
+
 
 function formatDate(date: Date){
     date = new Date(date);

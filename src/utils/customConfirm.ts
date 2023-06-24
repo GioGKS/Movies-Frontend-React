@@ -1,8 +1,8 @@
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 
 export default function customConfirm(
     onConfirm: any,
-    title: string = "Are your sure?",
+    title: string = "Are you sure?",
     confirmButtonText: string = "Delete"
 ){
     Swal.fire({
@@ -12,8 +12,8 @@ export default function customConfirm(
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33'
-    }).then(result => {
-        if( result.isConfirmed){
+    }).then(result =>{
+        if (result.isConfirmed){
             onConfirm();
         }
     })
