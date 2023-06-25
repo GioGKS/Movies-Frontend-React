@@ -1,43 +1,43 @@
-import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { urlActors } from "../endpoints";
-import DisplayErrors from "../utils/DisplayErrors";
-import { convertActorToFormData } from "../utils/formDataUtils";
-import ActorForm from "./ActorForm";
-import { actorCreationDTO } from "./actors.mode";
+import { useState } from 'react'
+import DisplayErrors from '../utils/DisplayErrors';
+import ActorForm from './ActorForm'
+import { actorCreationDTO } from './actors.mode'
+import {convertActorToFormData} from '../utils/formDataUtils';
+import axios from 'axios';
+import { urlActors } from '../endpoints';
+import { useNavigate } from 'react-router-dom';
 
-export default function CreateActor() {
-  const [errors, setErrors] = useState<string[]>([]);
-  const history = useNavigate();
+export default function CreateActor(){
 
-  async function create(actor: actorCreationDTO) {
-    try {
-      const formData = convertActorToFormData(actor);
+    const [errors, setErrors] = useState<string[]>([]);
+    const history = useNavigate();
 
-      await axios({
-        method: 'post',
-        url: urlActors,
-        data: formData,
-        headers: {'Content-Type': 'multipart/form-data'}
-      });
-      history('/actors');
+    async function create(actor: actorCreationDTO){
+        try{
+            const formData = convertActorToFormData(actor);
 
-    } catch (error: any) {
-      if (error && error.response) {
-        setErrors(error.response.data);
-      }
+            await axios({
+                method: 'post',
+                url: urlActors,
+                data: formData,
+                headers: {'Content-Type': 'multipart/form-data'}
+            });
+            history('/actors');
+        }
+        catch (error:any){
+            if (error && error.response){
+                setErrors(error.response.data);
+            }
+        }
     }
-  }
 
-  return (
-    <>
-      <h3>Create Actor</h3>
-      <DisplayErrors errors={errors} />
-      <ActorForm
-        model={{ name: "", dateOfBirth: undefined }}
-        onSubmit={async values => await create(values)}
-      />
-    </>
-  );
+    return (
+        <>
+            <h3>Create Actor</h3>
+            <DisplayErrors errors={errors} />
+            <ActorForm model={{name: '', dateOfBirth: undefined}}
+                onSubmit={async values => await create(values)}
+            />
+        </>
+    )
 }
