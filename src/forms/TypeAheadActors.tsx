@@ -1,37 +1,28 @@
-import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useState } from "react";
+import axios, { AxiosResponse } from "axios";
+import { ReactElement, useState } from "react";
+import { AsyncTypeahead } from "react-bootstrap-typeahead";
 import { actorMovieDTO } from "../actors/actors.mode";
+import { urlActors } from "../endpoints";
 
 export default function TypeAheadActors(props: typeAheadActorsProps) {
-  var Typeahead = require("react-bootstrap-typeahead").Typeahead;
-  const actors: actorMovieDTO[] = [
-    {
-      id: 1,
-      name: "Felipe",
-      character: "",
-      picture:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Tom_Holland_by_Gage_Skidmore.jpg/220px-Tom_Holland_by_Gage_Skidmore.jpg",
-    },
-    {
-      id: 2,
-      name: "Fernando",
-      character: "",
-      picture:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Dwayne_Johnson_2%2C_2013.jpg/220px-Dwayne_Johnson_2%2C_2013.jpg",
-    },
-    {
-      id: 3,
-      name: "Jessica",
-      character: "",
-      picture:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Meryl_Streep_December_2018.jpg/220px-Meryl_Streep_December_2018.jpg",
-    },
-  ];
+  const [actors, setActors] = useState<actorMovieDTO[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const selected: actorMovieDTO[] = [];
 
   const [draggedElement, setDraggedElement] = useState<
     actorMovieDTO | undefined
   >(undefined);
+
+  function handleSearch(query: string) {
+    setIsLoading(true);
+    axios
+      .get(`${urlActors}/searchByName/${query}`)
+      .then((response: AxiosResponse<actorMovieDTO[]>) => {
+        setActors(response.data);
+        setIsLoading(false);
+      });
+  }
 
   function handleDragStart(actor: actorMovieDTO) {
     setDraggedElement(actor);
@@ -58,23 +49,24 @@ export default function TypeAheadActors(props: typeAheadActorsProps) {
   return (
     <div className="mb-3">
       <label>{props.displayName}</label>
-      <Typeahead
+      <AsyncTypeahead
         id="typeahead"
-        onChange={(actors: actorMovieDTO[]) => {
+        onChange={(actors) => {
           if (props.actors.findIndex((x) => x.id === actors[0].id) === -1) {
+            actors[0].character = "";
             props.onAdd([...props.actors, actors[0]]);
           }
-
-          console.log(actors);
         }}
         options={actors}
-        labelKey="name"
-        filterBy={["name"]}
+        labelKey={(actor) => actor.name}
+        filterBy={() => true}
+        isLoading={isLoading}
+        onSearch={handleSearch}
         placeholder="Write the name of the actor..."
         minLength={1}
         flip={true}
         selected={selected}
-        renderMenuItemChildren={(actor: { picture: string | undefined; name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }) => (
+        renderMenuItemChildren={(actor) => (
           <>
             <img
               alt="actor"
@@ -119,5 +111,5 @@ interface typeAheadActorsProps {
   actors: actorMovieDTO[];
   onAdd(actors: actorMovieDTO[]): void;
   onRemove(actor: actorMovieDTO): void;
-  listUI(acto: actorMovieDTO): ReactElement;
+  listUI(actor: actorMovieDTO): ReactElement;
 }
