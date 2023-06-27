@@ -35,7 +35,7 @@ export default function IndividualMovie(props: movieDTO) {
           Edit
         </Link>
         <Button
-          onClick={() => customConfirm(() => deleteMovie())}
+          onclick={() => customConfirm(() => deleteMovie())}
           className="btn btn-danger"
         >
           Delete
