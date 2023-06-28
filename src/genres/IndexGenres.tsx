@@ -7,7 +7,7 @@ export default function IndexGenres() {
     <>
       <IndexEntity<genreDTO>
         url={urlGenres}
-        createURL="genres/create"
+        createURL="/genres/create"
         title="Genres"
         entityName="Genre"
       >
