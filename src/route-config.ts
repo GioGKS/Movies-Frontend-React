@@ -19,7 +19,7 @@ import LandingPage from "./movies/LandingPage";
 import RedirectToLandingPage from './utils/RedirectToLandingPage';
 
 const routes = [
-    {path: '/genres', component: IndexGenres, isAdmin: true},
+    {path: '/genres', component: IndexGenres},
     {path: '/genres/create', component: CreateGenre},
     {path: '/genres/edit/:id(\\d+)', component: EditGenre},
 
