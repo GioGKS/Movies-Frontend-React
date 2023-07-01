@@ -17,6 +17,8 @@ import MovieDetails from './movies/MovieDetails';
 
 import LandingPage from "./movies/LandingPage";
 import RedirectToLandingPage from './utils/RedirectToLandingPage';
+import Register from "./auth/Register";
+import Login from "./auth/Login";
 
 const routes = [
     {path: '/genres', component: IndexGenres},
@@ -35,6 +37,11 @@ const routes = [
     {path: '/movies/edit/:id(\\d+)', component: EditMovie},
     {path: '/movies/filter', component: FilterMovies},
     {path: '/movie/:id(\\d+)', component: MovieDetails},
+
+    {path: '/register', component: Register},
+    {path: '/login', component: Login},
+
+
 
     {path: '/', component: LandingPage},
     {path: '*', component: RedirectToLandingPage}

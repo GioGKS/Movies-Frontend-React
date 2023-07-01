@@ -4,15 +4,20 @@ import Menu from "./Menu";
 import routes from "./route-config";
 import configureValidations from "./Validations";
 import { claim } from "./auth/auth.models";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthenticationContext from "./auth/AuthenticationContext";
+import { getClaims } from "./auth/handleJWT";
 
 configureValidations();
 
 function App() {
   const [claims, setClaims] = useState<claim[]>([
-    {name: 'email', value: 'gio97@gmail.com'}
+    //{name: 'email', value: 'gio97@gmail.com'}
   ]);
+
+  useEffect(() => {
+    setClaims(getClaims())
+  }, [])
 
   return (
     <BrowserRouter>
