@@ -7,8 +7,10 @@ import { claim } from "./auth/auth.models";
 import { useEffect, useState } from "react";
 import AuthenticationContext from "./auth/AuthenticationContext";
 import { getClaims } from "./auth/handleJWT";
+import configureInterceptor from "./utils/httpInterceptors";
 
 configureValidations();
+configureInterceptor();
 
 function App() {
   const [claims, setClaims] = useState<claim[]>([
