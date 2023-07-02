@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { Link, useParams } from "react-router-dom";
 import { urlMovies, urlRatings } from "../endpoints";
-import coordinateDTO from "../utils/coordinates.model";
 import Loading from "../utils/Loading";
 import Map from "../utils/Map";
 import { movieDTO } from "./movies.model";
 import Ratings from "../utils/Ratings";
 import Swal from "sweetalert2";
+import coordinateDTO from "../utils/coordinate.model";
 
 export default function MovieDetails() {
   const { id }: any = useParams();

@@ -13,9 +13,7 @@ configureValidations();
 configureInterceptor();
 
 function App() {
-  const [claims, setClaims] = useState<claim[]>([
-    //{name: 'email', value: 'gio97@gmail.com'}
-  ]);
+  const [claims, setClaims] = useState<claim[]>([]);
 
   useEffect(() => {
     setClaims(getClaims())

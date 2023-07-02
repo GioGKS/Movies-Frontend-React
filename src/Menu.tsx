@@ -7,11 +7,10 @@ import { logout } from "./auth/handleJWT";
 import Button from "./utils/Button";
 
 export default function Menu() {
-
-  const {update, claims} = useContext(AuthenticationContext);
+  const { update, claims } = useContext(AuthenticationContext);
 
   function getUserEmail(): string {
-      return claims.filter(x => x.name === "email")[0]?.value;
+    return claims.filter((x) => x.name === "email")[0]?.value;
   }
 
   return (
@@ -52,6 +51,11 @@ export default function Menu() {
                   <li className="nav-item">
                     <NavLink className="nav-link" to="/movies/create">
                       Create a Movie
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/users">
+                      Users
                     </NavLink>
                   </li>
                 </>
