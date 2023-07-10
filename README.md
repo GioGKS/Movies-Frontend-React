@@ -28,10 +28,16 @@ The application has the option of adding, editing and deleting products. 3 autho
 
 ## Installation
 
-Install EBook App with npm
+Install Movies App with npm
 
 ```bash
   npm install
+```
+
+Run Movies App with npm
+
+```bash
+  npm start
 ```
 
 ## Connenting To Backend Api
