@@ -43,6 +43,13 @@ Run Movies App with npm
 ## Connenting To Backend Api
 By default the client side is connecting the client side to localhost backend.
 
+Go to src/.env.development :
+
+1   // For connecting to the localhost 
+2   
+3   REACT_APP_API_URL=https://localhost:7009/api
+
+
 
 
 ## API Access
