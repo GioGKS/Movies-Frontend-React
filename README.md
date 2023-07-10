@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+## Movies App
+Online movie appliaction.
+Movies app simulates online movies site,that alows you to add,delete,edit movies,actors and movie theaters.
+The application has the option of adding, editing and deleting products. 3 authorization levels for users with different action options: visitor, user and admin.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Table of Contents
+- [Features](#features)
+- [Tech Stack](#tech-Stack)
+- [Installation](#installation)
+- [Connenting To Backend Api](#connenting-to-backend-api)
+- [API Access](#api-access)
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Adding movies,actors and removing them.
+- Choosing on the map place of the movie theater.
+- User Management panel - manage users and their permissions.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tech Stack
+- Backend: C# ASP.NET Core.
+- Frontend: react: "^18.2.0".
+- Database: Microsoft SQL server with Entity Framework.
+- Authentication: JWT & Identity Core.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Install EBook App with npm
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+  npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Connenting To Backend Api
+By default the client side is connecting the client side to localhost backend.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## API Access
+| User              | Password                   | Access       |  Access & Abilities           |        
+| :---------------  | :------------------------- | :----------- | :-----------
+| admin@gmail.com   | Aa123456!                    | Administrator|  Full access to any page in the app and observe <strong>any user & order</strong> details.<br> Purchase products.<br>Add/Edit/Delete products, any user's orders and accounts <br> Modify <strong>any user's</strong> account details: username/email/password.<br> Can Change the permission levels of <strong>all users</strong>.<br>The only one who can see the buttons for adding, editing and deleting products.|
+| user@email.com    | Bb@4321                    | User         |Full access to any page in the app and observe <strong>its own</strong> user details.<br> Purchase products.<br>Observe <strong>its own</strong> user details.<br>Add/Edit/Delete <strong>its own</strong> orders.<br> Modify <strong>its own</strong> account's details:  username/email/password. |
+| visitor@email.com | Cc@1324                    | Visitor      |Limited access.<br> Purchase products. <br> Observe <strong>its own</strong> user details.<br>Add/Edit/Delete <strong>its own</strong> orders.<br> Modify <strong>its own</strong> account's details: username/email/password.<br><strong>Not authorized</strong> to see "my book" page. |
