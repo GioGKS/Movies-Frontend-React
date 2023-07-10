@@ -32,13 +32,6 @@ export default function IndividualMovie(props: movieDTO) {
         authorized={
           <>
             <div>
-              <Link
-                style={{ marginRight: "1rem" }}
-                className="btn btn-info"
-                to={`/movies/edit/${props.id}`}
-              >
-                Edit
-              </Link>
               <Button
                 onclick={() => customConfirm(() => deleteMovie())}
                 className="btn btn-danger"
