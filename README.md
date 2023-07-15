@@ -1,6 +1,6 @@
 ## Movies App
 Online movie appliaction.
-Movies app simulates online movies site,that alows you to add,delete movies,actors and movie theaters.
+Movies app simulates online movies site,that alows you to add,delete,edit movies,actors and movie theaters.
 The application has the option of adding, editing and deleting products. 3 authorization levels for users with different action options: visitor, user and admin.
 
 
@@ -28,32 +28,20 @@ The application has the option of adding, editing and deleting products. 3 autho
 
 ## Installation
 
-Install Movies App with npm
+Install EBook App with npm
 
 ```bash
   npm install
 ```
 
-Run Movies App with npm
-
-```bash
-  npm start
-```
-
 ## Connenting To Backend Api
 By default the client side is connecting the client side to localhost backend.
-
-Go to src/.env.development :
-
-1   // For connecting to the localhost 
-2   
-3   REACT_APP_API_URL=https://localhost:7009/api
-
 
 
 
 ## API Access
 | User              | Password                   | Access       |  Access & Abilities           |        
 | :---------------  | :------------------------- | :----------- | :-----------
-| admin@gmail.com   | Aa123456!                    | Administrator|  Full access to any page in the app and observe <strong>any user </strong> details.<br> Adding Movies & Actors.<br>Add/Delete movies,actors,genres,movie theaters and user's accounts. Can Change the permission levels of <strong>all users</strong>.<br>The only one who can see the buttons for adding and deleting products.|
-| krtstunts@gmail.com    | Aa123456!                    | User         | Access to the main and filter pages in the app.
+| admin@gmail.com   | Aa123456!                    | Administrator|  Full access to any page in the app and observe <strong>any user & order</strong> details.<br> Purchase products.<br>Add/Edit/Delete products, any user's orders and accounts <br> Modify <strong>any user's</strong> account details: username/email/password.<br> Can Change the permission levels of <strong>all users</strong>.<br>The only one who can see the buttons for adding, editing and deleting products.|
+| user@email.com    | Bb@4321                    | User         |Full access to any page in the app and observe <strong>its own</strong> user details.<br> Purchase products.<br>Observe <strong>its own</strong> user details.<br>Add/Edit/Delete <strong>its own</strong> orders.<br> Modify <strong>its own</strong> account's details:  username/email/password. |
+| visitor@email.com | Cc@1324                    | Visitor      |Limited access.<br> Purchase products. <br> Observe <strong>its own</strong> user details.<br>Add/Edit/Delete <strong>its own</strong> orders.<br> Modify <strong>its own</strong> account's details: username/email/password.<br><strong>Not authorized</strong> to see "my book" page. |
