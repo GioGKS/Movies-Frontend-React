@@ -1,7 +1,7 @@
 ## Movies App
 Online movie appliaction.
-Movies app simulates online movies site,that alows you to add,delete,edit movies,actors and movie theaters.
-The application has the option of adding, editing and deleting products. 3 authorization levels for users with different action options: visitor, user and admin.
+Movies app simulates online movies site,that alows you to add,delete movies,actors and movie theaters.
+The application has 3 authorization levels for users with different action options: visitor, user and admin.
 
 
 ## Table of Contents
