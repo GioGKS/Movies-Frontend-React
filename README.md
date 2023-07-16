@@ -43,4 +43,4 @@ By default the client side is connecting the client side to localhost backend.
 | User              | Password                   | Access       |  Access & Abilities           |        
 | :---------------  | :------------------------- | :----------- | :-----------
 | admin@gmail.com   | Aa123456!                    | Administrator|  Full access to any page in the app and observe <strong>any user & order</strong> details.<br> Add Movies.<br>Add/Delete Actors,Movies Theaters,Genres. <br> Can Change the permission levels of <strong>all users</strong>.<br>The only one who can see the buttons for adding and deleting Movies.|
-| user@email.com    | Bb@4321                    | User         | Access for Movies and Filter Page |
+| krtstunts@gmail.com    | Aa123456!                    | User         | Access for Movies and Filter Page |
