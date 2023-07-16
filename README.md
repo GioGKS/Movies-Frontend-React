@@ -42,6 +42,5 @@ By default the client side is connecting the client side to localhost backend.
 ## API Access
 | User              | Password                   | Access       |  Access & Abilities           |        
 | :---------------  | :------------------------- | :----------- | :-----------
-| admin@gmail.com   | Aa123456!                    | Administrator|  Full access to any page in the app and observe <strong>any user & order</strong> details.<br> Purchase products.<br>Add/Edit/Delete products, any user's orders and accounts <br> Modify <strong>any user's</strong> account details: username/email/password.<br> Can Change the permission levels of <strong>all users</strong>.<br>The only one who can see the buttons for adding, editing and deleting products.|
-| user@email.com    | Bb@4321                    | User         |Full access to any page in the app and observe <strong>its own</strong> user details.<br> Purchase products.<br>Observe <strong>its own</strong> user details.<br>Add/Edit/Delete <strong>its own</strong> orders.<br> Modify <strong>its own</strong> account's details:  username/email/password. |
-| visitor@email.com | Cc@1324                    | Visitor      |Limited access.|
+| admin@gmail.com   | Aa123456!                    | Administrator|  Full access to any page in the app and observe <strong>any user & order</strong> details.<br> Add Movies.<br>Add/Delete Actors,Movies Theaters,Genres. <br> Can Change the permission levels of <strong>all users</strong>.<br>The only one who can see the buttons for adding and deleting Movies.|
+| user@email.com    | Bb@4321                    | User         | Access for Movies and Filter Page |
